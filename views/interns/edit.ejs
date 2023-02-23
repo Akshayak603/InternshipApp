@@ -1,0 +1,79 @@
+<% layout('layouts/boilerplate')%>
+<div class="row mb-3">
+    <h1 class="text-center">Edit Internship</h1>
+    <div class="col-6 offset-3">
+        <form action="/interns/<%=intern._id%>?_method=PUT" method="POST" novalidate class="validated-form">
+            <div class="mb-3">
+                <label class="form-label" for="title">Title</label>
+                <input class="form-control" type="text" id="title" name="intern[title]"
+                    value="<%=intern.title %>" required>
+                <div class="valid-feedback">
+                        Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="location">Location</label>
+                <input class="form-control" type="text" id="location" name="intern[location]"
+                    value="<%=intern.location %>" required>
+                <div class="valid-feedback">
+                        Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="image">Image Url</label>
+                <input class="form-control" type="text" id="image" name="intern[image]"
+                    value="<%=intern.image %>" required>
+                <div class="valid-feedback">
+                        Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="vac">Vaccancy</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="vac" placeholder="1" aria-label="vac"
+                        aria-describedby="vac-label" name="intern[vac]" value="<%=intern.vac %>" required>
+                </div>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="description">Description</label>
+                <textarea class="form-control" type="text" id="description"
+                    name="intern[description]" rows="5" required><%= intern.description%></textarea>
+                <div class="valid-feedback">
+                        Looks good!
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="link">Last Date to Apply</label>
+                <div class="input-group">
+                    <input type="date" class="form-control" id="link" placeholder="dd/mm/yy" aria-label="lastDate"
+                        aria-describedby="lastDate-label" name="intern[lastDate]" value="<%=intern.lastDate %>" required>
+                </div>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="link">Link to Apply</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="link" placeholder="Please provide link to apply" aria-label="link"
+                        aria-describedby="link-label" name="intern[link]" value="<%=intern.link %>" required>
+                </div>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <button class="btn btn-info">Update Insternship</button>
+            </div>
+        </form>
+        <a class="btn btn-outline-danger" href="/interns/<%= intern._id%>">Back</a>
+
+    </div>
+</div>

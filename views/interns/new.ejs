@@ -1,0 +1,74 @@
+
+<% layout('layouts/boilerplate')%>
+<div class="row mb-3">
+    <h1 class="text-center">New Opportunity</h1>
+    <div class="col-6 offset-3">
+        <form action="/interns" method="POST" novalidate class="validated-form">
+            <div class="mb-3">
+                <label class="form-label" for="title">Title</label>
+                <input class="form-control" type="text" id="title" name="intern[title]" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="location">Location</label>
+                <input class="form-control" type="text" id="location" name="intern[location]" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="image">Image Url</label>
+                <input class="form-control" type="text" id="image" name="intern[image]" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="vac">Vaccancy</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="vac" placeholder="1" aria-label="vac"
+                        aria-describedby="vac-label" name="intern[vac]" required>
+                </div>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="description">Description</label>
+                <textarea class="form-control" type="text" id="description" name="intern[description]" required></textarea>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="lastDate">Last Date To Apply</label>
+                <div class="input-group">
+                    <input type="date" class="form-control" id="lastDate" placeholder="dd/mm/yyyy" aria-label="lastDate"
+                        aria-describedby="lastDate-label" name="intern[lastDate]" required>
+                </div>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="link">Link to Apply</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="link" placeholder="Please provide link to apply" aria-label="link"
+                        aria-describedby="link-label" name="intern[link]" required>
+                </div>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-success">Add Internship</button>
+            </div>
+        </form>
+        <a class="btn btn-success" href="/interns">All Internships</a>
+    </div>
+</div>

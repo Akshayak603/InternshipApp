@@ -1,0 +1,20 @@
+
+<% layout('layouts/boilerplate')%>
+<div class="row justify-content-center">
+	<div class="col-md-6">
+		<form action="/reset/<%= token %>" method="POST">
+		  <legend class="text-center">Reset Password</legend>
+		  <div class="form-group">
+		    <label for="password" class="mb-1">New Password</label>
+		    <input type="password" name="password" value="" placeholder="Minimum Length 8" minlength="8" autofocus="autofocus" class="form-control"/>
+		  </div>
+		  <div class="form-group mt-2">
+		    <label for="confirm" class="mb-1">Confirm Password</label>
+		    <input type="password" name="confirm" value="" placeholder="Confirm password" minlength="8" class="form-control"/>
+		  </div>
+		  <div class="form-group mt-2">
+		    <button type="submit" class="btn btn-primary">Update Password</button>
+		  </div>
+		</form>
+	</div>
+</div>

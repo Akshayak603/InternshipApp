@@ -1,0 +1,102 @@
+<% layout('layouts/boilerplate')%>
+<link rel="stylesheet" href="/stylesheets/stars.css">
+
+<div class="row">
+    <div class="col-6">
+        <div class="card mb-3">
+            <img src="<%= intern.image%>" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title"><%= intern.title%></h5>
+                <p class="card-text"><%= intern.description%></p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item text-muted"><%= intern.location%></li>
+                <li class="list-group-item">Vaccancy: <%= intern.vac%></li>
+                <li class="list-group-item">Last Date: <%=intern.lastDate%></li> 
+                <li class="list-group-item">Submitted by: <%= intern.author.username%></li>
+            </ul>
+            <div class="card-body">
+                <% let date2= Date.now();
+                if(date2 < intern.lastDate) { %>
+                <a class="card-link btn btn-success" href="<%= intern.link %> ">Apply</a>
+                <% } %>
+
+                <% let date1= Date.now();
+            if(date1 > intern.lastDate) { %>
+                <a class="card-link btn btn-danger">Expired (Not accepting anymore)</a>
+            <% } %>
+
+                <%  if( currentUser && intern.author.equals(currentUser._id))  {%>
+                <a class="card-link btn btn-info" href="/interns/<%=intern._id%>/edit">Edit</a>
+                <form class="d-inline" action="/interns/<%=intern._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+            <% } %>
+            </div>
+            <div class="card-footer text-muted">
+                Created at: <%= intern.modified%>
+            </div>
+        </div>
+    </div>
+
+<div class="col-6">
+    
+    <div id='map'></div>
+
+    <% if(currentUser){ %>
+    <h2>Leave a Review</h2>
+    <form action="/interns/<%=intern._id%>/reviews" method="POST" class="mb-3 validated-form" novalidate>
+        <!-- <div class="mb-3">
+            <label class="form-label" for="rating">Rating</label>
+            <input class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating">
+        </div> -->
+        <fieldset class="starability-basic">
+                <fieldset class="starability-fade">
+                    <!--<legend>First rating:</legend>-->
+                    <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+                    <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                    <label for="first-rate1" title="Terrible">1 star</label>
+                    <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                    <label for="first-rate2" title="Not good">2 stars</label>
+                    <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                    <label for="first-rate3" title="Average">3 stars</label>
+                    <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                    <label for="first-rate4" title="Very good">4 stars</label>
+                    <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                    <label for="first-rate5" title="Amazing">5 stars</label>
+                </fieldset>
+        <div class="mb-3">
+            <label class="form-label" for="body">Review</label>
+            <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3" required></textarea>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <button class="btn btn-success mb-3">Submit</button>
+    </form>
+    <% } %>
+    <% for(let review of intern.reviews) { %>
+    <div class="card mb-3 ">
+        <div class="card-body">
+            <h5 class="card-title"> <%= review.author.username%></h5>
+            <p class="starability-result" data-rating="<%=review.rating%>">
+                Rated: <%= review.rating %> stars
+            </p>
+            <p class="card-text">Review: <%= review.body %></p>
+            <%  if( currentUser && review.author.equals(currentUser._id))  {%>
+            <form action="/interns/<%=intern._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
+                <button class="btn btn-sm btn-danger">Delete</button>
+            </form>
+            <% } %>
+        </div>
+    </div>
+    <% } %>
+</div>
+</div>
+
+<script>
+    const mapToken = '<%-process.env.MAP_TOKEN%>';
+    const intern = <%- JSON.stringify(intern) %>
+</script>
+
+<script src="/javascripts/showPageMap.js"></script>
