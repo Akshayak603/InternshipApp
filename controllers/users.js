@@ -74,13 +74,13 @@ module.exports.forgot = (req, res, next) => {
         var smtpTransport = nodemailer.createTransport({
           service: "Gmail",
           auth: {
-            user: "you670633@gmail.com",
+            user: process.env.GMAILU,
             pass: process.env.GMAILP,
           },
         });
         var mailOptions = {
           to: user.email,
-          from: "you670633@gmail.com",
+          from: process.env.GMAILU,
           subject: "InternHub Password Reset",
           text:
             "You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n" +
