@@ -1,3 +1,3 @@
 # Internhub
 Where you are your own recruiter!!
-https://obscure-hamlet-35761.herokuapp.com/
+https://internhub-akshaykumarak603.b4a.run/
